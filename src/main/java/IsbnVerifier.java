@@ -9,15 +9,26 @@ class IsbnVerifier {
         String replace = stringToVerify.replace("-", "");
         String[] stringsInArray = replace.split("");
         int result = 0;
+        if (stringsInArray.length < 10){
+            return false;
+        }
         for (int i = 0; i < stringsInArray.length; i++) {
-            if (isTheStringDistincFromXOrDigit(stringsInArray[i])){
-                return false;
-            }
+            if (conditionsAreOk(stringsInArray[i], i)) return false;
             int value = obtainValueOfString(stringsInArray[i]);
             result += value * multiplier[i];
         }
         return result % 11 == 0;
 
+    }
+
+    private boolean conditionsAreOk(String value, int position) {
+        if (value.equals("X") && position != 9){
+            return true;
+        }
+        if (isTheStringDistincFromXOrDigit(value)){
+            return true;
+        }
+        return false;
     }
 
     private boolean isTheStringDistincFromXOrDigit(String s) {
