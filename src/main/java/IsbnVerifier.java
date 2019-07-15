@@ -10,11 +10,15 @@ class IsbnVerifier {
         String[] stringsInArray = replace.split("");
         int result = 0;
         for (int i = 0; i < stringsInArray.length; i++) {
-            int value = Integer.valueOf(stringsInArray[i]);
+            int value = obtainValueOfString(stringsInArray[i]);
             result += value * multiplier[i];
         }
         return result % 11 == 0;
 
+    }
+
+    private int obtainValueOfString(String valueOfString) {
+        return valueOfString.equals("X") ? 10: Integer.valueOf(valueOfString);
     }
 
 }
