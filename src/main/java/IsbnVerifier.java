@@ -9,7 +9,7 @@ class IsbnVerifier {
         String replace = stringToVerify.replace("-", "");
         String[] stringsInArray = replace.split("");
         int result = 0;
-        if (stringsInArray.length < 10){
+        if (stringsInArray.length != 10){
             return false;
         }
         for (int i = 0; i < stringsInArray.length; i++) {
