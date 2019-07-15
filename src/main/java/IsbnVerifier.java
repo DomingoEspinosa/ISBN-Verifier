@@ -10,11 +10,23 @@ class IsbnVerifier {
         String[] stringsInArray = replace.split("");
         int result = 0;
         for (int i = 0; i < stringsInArray.length; i++) {
+            if (isTheStringDistincFromXOrDigit(stringsInArray[i])){
+                return false;
+            }
             int value = obtainValueOfString(stringsInArray[i]);
             result += value * multiplier[i];
         }
         return result % 11 == 0;
 
+    }
+
+    private boolean isTheStringDistincFromXOrDigit(String s) {
+        for (char c: s.toCharArray()){
+            if (!Character.isDigit(c) && c != 'X'){
+                return true;
+            }
+        }
+        return false;
     }
 
     private int obtainValueOfString(String valueOfString) {
